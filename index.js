@@ -8,7 +8,12 @@ const bodyParser = require('body-parser')
 
 
 connectDb()
-app.use(cors())
+const corsOptions = {
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions))
 app.use(bodyParser.json())
 app.get('/', (req, res) => { res.send('Welcome to chat api') })
 app.use('/chat', chatRouter)
